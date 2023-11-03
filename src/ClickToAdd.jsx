@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View, Pressable } from "react-native";
-import CustomButton from "./custombutton";
+import { StyleSheet, Text, View } from "react-native";
+import CustomButton from "./CustomButton";
 
 export default ClickToAdd = () => {
   const [count, setCount] = React.useState(0);
@@ -11,7 +11,7 @@ export default ClickToAdd = () => {
         label="Click to add"
         onPressFun={() => setCount(count + 1)}
         buttonStyle={styles.buttonStyle}
-        textStyle={styles.buttontextStyle}
+        textStyle={styles.buttonTextStyle}
       />
     </View>
   );
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     backgroundColor: "green",
     width: 90,
   },
-  buttontextStyle: {
+  buttonTextStyle: {
     fontSize: 9,
     lineHeight: 21,
     fontWeight: "bold",
