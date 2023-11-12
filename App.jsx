@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Pressable, Text, View, ScrollView } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
+import ToDoForm from "./src/ToDoForm";
 
 const App = () => {
   const [tasks, setTasks] = useState(["Do laundry", "Go to gym", "Walk dog"]);
@@ -9,20 +10,33 @@ const App = () => {
     return (
       <ScrollView>
         {tasks.map((task, index) => (
-          <Pressable key={index}>
-            <View style={[styles.task]}>
+            <View style={[styles.task]} key={index}>
               <Text style={styles.taskText}>{task}</Text>
             </View>
-          </Pressable>
         ))}
       </ScrollView>
     );
   }
 
+  const addTask = (newTask) => {
+    
+    setTasks((currentTasks) => {
+      // Check if the newTask is already in the currentTasks list
+      if (currentTasks.includes(newTask)) {
+        alert(`${newTask} already exists.`); // Or handle duplicates in another way
+        return currentTasks; // Return the current list without adding the duplicate
+      }
+  
+      // If it's not a duplicate, add the new task to the list
+      return [...currentTasks, newTask];
+    });
+  };
+
   return (
     <SafeAreaProvider>
       <SafeAreaView>
         <ToDoList tasks={tasks} />
+        <ToDoForm addTask={addTask} />
       </SafeAreaView>
     </SafeAreaProvider>
   );
